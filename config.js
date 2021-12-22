@@ -1,4 +1,12 @@
+const dotenv = require("dotenv");
+
+const envFound = dotenv.config();
+if (!envFound) {
+  throw new Error("Couldn't find .env file.");
+}
+
 module.exports = {
+  MONGODB: process.env.DATABASE_URI,
   //Facebook App credentials
   FB_PAGE_TOKEN: "EAAEDIywAlWMBADZBuXXtiSguJlh2lkrUteJFiZBWBQjp8Uo1i5aLyOVkvqrM7mtzhYnT3vZAsJ5ZAv7kKqviN4Yke7pU4ZAzCBxx0DcNyvc1McZAbZB9Kk17VFujt1xAlid0oAugPdKL3OBKo1GuThQ6j8cZCXv7lMS5DqOZCmHHMChMrA1QkHxcz",
   FB_VERIFY_TOKEN: "botComercialToken",

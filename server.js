@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require('mongoose');
+const { MONGODB } = require("./config");
 
 const port = process.env.PORT || 3000;
 
@@ -13,7 +14,7 @@ app.use(
 );
 
 mongoose.connect(
-  'mongodb+srv://diegosalonia:4375@cluster0.nrpfo.mongodb.net/chatbotDB?retryWrites=true&w=majority', 
+  MONGODB, 
   {
       useNewUrlParser: true,
       useUnifiedTopology: true
