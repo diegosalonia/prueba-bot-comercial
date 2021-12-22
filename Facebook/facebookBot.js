@@ -8,6 +8,11 @@ const axios = require("axios");
 const config = require("../config");
 const dialogflow = require("../dialogflow");
 const { structProtoToJson } = require("./helpers/structFunctions");
+//mongodb models
+const ChatbotUser = require("../models/ChatbotUsers");
+ChatbotUser.find({}, (err, res) => {
+  console.log(res);
+})
 
 // Messenger API parameters
 if (!config.FB_PAGE_TOKEN) {
@@ -109,6 +114,7 @@ async function receivedMessage(event) {
     return;
   }
   saveUserData(senderId);
+  
 
   if (messageText) {
     //send message to dialogflow
@@ -123,6 +129,7 @@ async function saveUserData(facebookId) {
   let isRegistered = await findOne({ facebookId });
   if (isRegistered) return;
   let userData = await getUserData(facebookId);
+  console.log(userData)
   let chatbotUser = new ChatbotUser({
     firstName: userData.first_name,
     lastName: userData.last_name,
